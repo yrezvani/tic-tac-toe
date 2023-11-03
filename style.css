@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    width: 10rem;    
+    margin: 9vh auto;
+    text-align: center;
+}
+.container {
+    background-color: rgb(203, 203, 203);
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+}
+
+.one,
+.four,
+.seven {
+    border-bottom: 2px solid red;
+}
+
+.two,
+.five,
+.eight {
+    border: 2px solid red;;
+    border-top: none;
+}
+
+.three,
+.six,
+.nine {
+    border-bottom: 2px solid red;
+}
+
+.seven,
+.eight,
+.nine {
+    border-bottom: none;
+}
+.controller {
+    font-size: 5rem;
+}
+
+.marker-container {
+    display: flex;
+    padding: 4px;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.marker {
+    background-color: gray;
+    flex-grow: 1;
+}
