@@ -5,12 +5,11 @@
 }
 
 h1 {
-    width: 10rem;    
+    width: 10rem;
     margin: 9vh auto;
     text-align: center;
 }
 .container {
-    background-color: rgb(203, 203, 203);
     width: 350px;
     height: 350px;
     position: absolute;
@@ -39,7 +38,7 @@ h1 {
 .two,
 .five,
 .eight {
-    border: 2px solid red;;
+    border: 2px solid red;
     border-top: none;
 }
 
