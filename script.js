@@ -6,7 +6,7 @@ const gameBoard = (function () {
     const player1 = createPlayer('player 1', 'X', true);
     const player2 = createPlayer('player 2', 'O', false);
 
-    const board = [];
+    let board = [];
 
     let gameWinner = false;
 
@@ -23,41 +23,57 @@ const gameBoard = (function () {
 
     const cells = document.querySelectorAll('.cell');
 
-    cells.forEach(cell => {
-        addEventListener('click', function (e) {
-            const cell = e.target;
-            text = cell.textContent;
+    const displayMarker = function () {
+        cells.forEach(cell => {
+            addEventListener('click', handleClick);
+        });
+    };
 
-            if (player1.activePlayer && !text && !gameWinner) {
-                cell.textContent = 'x';
-                board[cell.dataset.no] = 'x';
+    const handleClick = function (e) {
+        const cell = e.target;
+        text = cell.textContent;
+        if (player1.activePlayer && !text && !gameWinner) {
+            cell.textContent = 'x';
+            board[cell.dataset.no] = 'x';
+            if (checkWin('x')) {
+                showWinner('x');
+                resetGame();
+            } else if (isDraw()) {
+                showDraw();
+                resetGame();
+            } else {
                 player1.activePlayer = false;
                 player2.activePlayer = true;
-                if (checkWin('x')) {
-                    showWinner('x');
-                    resetGame();
-                }
-            } else if (player2.activePlayer && !text && !gameWinner) {
-                cell.textContent = 'o';
-                board[cell.dataset.no] = 'o';
-
+            }
+        } else if (player2.activePlayer && !text && !gameWinner) {
+            cell.textContent = 'o';
+            board[cell.dataset.no] = 'o';
+            if (checkWin('o')) {
+                showWinner('o');
+                resetGame();
+            } else if (isDraw()) {
+                showDraw();
+                resetGame();
+            } else {
                 player2.activePlayer = false;
                 player1.activePlayer = true;
-                if (checkWin('o')) {
-                    showWinner('o');
-                    resetGame();
-                }
-            } else return;
-        });
-    });
+            }
+        } else return;
+    };
 
-    for (let i = 0; i < board.length; i++) {
-        if (board[i] === 'x') xPlays.push(i);
-        if (board[i] === 'o') oPlays.push(i);
-    }
-
-    return { board, player1, player2, oPlays, xPlays, winCombs };
+    return {
+        board,
+        player1,
+        player2,
+        winCombs,
+        cells,
+        gameWinner,
+        displayMarker,
+        handleClick,
+    };
 })();
+
+gameBoard.displayMarker();
 
 const checkWin = function (marker) {
     return gameBoard.winCombs.some(comb => {
@@ -65,4 +81,35 @@ const checkWin = function (marker) {
             return gameBoard.board[index] === marker;
         });
     });
+};
+
+const resetGame = function () {
+    gameBoard.player1.activePlayer = true;
+    gameBoard.player2.activePlayer = false;
+    for (const cell of gameBoard.cells) {
+        cell.textContent = '';
+    }
+    gameBoard.board.fill('');
+    gameBoard.cells.forEach(cell => {
+        cell.removeEventListener('click', gameBoard.handleClick);
+    });
+    gameBoard.displayMarker();
+    console.log('reset running');
+};
+
+const isDraw = function () {
+    return [...gameBoard.cells].every(cell => {
+        return cell.textContent !== '';
+    });
+    console.log('draw running');
+};
+
+const showWinner = function () {
+    if (gameBoard.player1.activePlayer) console.log('Player 1 wins!');
+    if (gameBoard.player2.activePlayer) console.log('Player 2 wins!');
+    console.log('winner running');
+};
+
+const showDraw = function () {
+    console.log("It's a draw!");
 };
