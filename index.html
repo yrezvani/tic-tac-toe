@@ -9,10 +9,27 @@
     </head>
     <body>
         <h1>Tic Tac Toe</h1>
-        <div class="marker-container">
-            <button class="marker o">O</button>
-            <button class="marker x">X</button>
+        <div class="form-container">
+            <form action="" id="form">
+                <h3>Enter your name</h3>
+                <ul>
+                    <li>
+                        <label for="player1">Player 1</label>
+                        <input type="text" id="player1" name="player1" />
+                    </li>
+                    <li>
+                        <label for="player2">Player 2</label>
+                        <input type="text" id="player2" name="player2" />
+                    </li>
+                </ul>
+                <div class="start-container">
+                    <button class="start-btn" type="submit" form="form">
+                        Start/Restart Game
+                    </button>
+                </div>
+            </form>
         </div>
+
         <div class="container">
             <div class="cell one" data-no="0"></div>
             <div class="cell two" data-no="1"></div>

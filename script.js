@@ -1,10 +1,10 @@
 const gameBoard = (function () {
     const createPlayer = function (name, marker, activePlayer) {
-        return { name, marker, activePlayer };
+        return {name, marker, activePlayer};
     };
 
-    const player1 = createPlayer('player 1', 'X', true);
-    const player2 = createPlayer('player 2', 'O', false);
+    const player1 = createPlayer('Player 1', 'X', true);
+    const player2 = createPlayer('Player 2', 'O', false);
 
     let board = [];
 
@@ -86,6 +86,10 @@ const checkWin = function (marker) {
 const resetGame = function () {
     gameBoard.player1.activePlayer = true;
     gameBoard.player2.activePlayer = false;
+    gameBoard.player1.name = document.querySelector('#player1').value;
+    gameBoard.player2.name = document.querySelector('#player2').value;
+    console.log(document.querySelector('#player1').value);
+
     for (const cell of gameBoard.cells) {
         cell.textContent = '';
     }
@@ -94,7 +98,7 @@ const resetGame = function () {
         cell.removeEventListener('click', gameBoard.handleClick);
     });
     gameBoard.displayMarker();
-    console.log('reset running');
+    console.log(gameBoard.player1.name);
 };
 
 const isDraw = function () {
@@ -105,11 +109,18 @@ const isDraw = function () {
 };
 
 const showWinner = function () {
-    if (gameBoard.player1.activePlayer) console.log('Player 1 wins!');
-    if (gameBoard.player2.activePlayer) console.log('Player 2 wins!');
+    if (gameBoard.player1.activePlayer)
+        console.log(`${gameBoard.player1.name} wins!`);
+    if (gameBoard.player2.activePlayer)
+        console.log(`${gameBoard.player2.name} wins!`);
     console.log('winner running');
 };
 
 const showDraw = function () {
     console.log("It's a draw!");
 };
+
+document.querySelector('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    resetGame();
+});

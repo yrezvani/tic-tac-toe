@@ -6,7 +6,8 @@
 
 h1 {
     width: 10rem;
-    margin: 9vh auto;
+    margin: 6vh auto;
+    margin-bottom: 2vh;
     text-align: center;
 }
 .container {
@@ -57,14 +58,36 @@ h1 {
     font-size: 5rem;
 }
 
-.marker-container {
-    display: flex;
+.start-container {
     padding: 4px;
-    width: 200px;
-    margin: 0 auto;
+    margin-top: 1rem;
+    text-align: center;
 }
 
-.marker {
-    background-color: gray;
-    flex-grow: 1;
+.start-btn {
+    display: inline-block;
+    background-color: rgb(191, 240, 148);
+    padding: 5px;
+}
+
+.form-container {
+    /* width: 440px;
+    margin: 0 auto; */
+    text-align: center;
+}
+
+form {
+    display: inline-block;
+}
+
+h3 {
+    margin-bottom: 1rem;
+}
+form ul {
+    display: flex;
+    gap: 1rem;
+}
+
+form li {
+    list-style-type: none;
 }
