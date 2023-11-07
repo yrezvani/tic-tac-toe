@@ -6,18 +6,19 @@
 
 h1 {
     width: 10rem;
-    margin: 6vh auto;
+    margin: 2rem auto;
     margin-bottom: 2vh;
     text-align: center;
 }
+
+/* body {
+    text-align: center;
+} */
+
 .container {
     width: 350px;
     height: 350px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    margin: 2rem auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -68,16 +69,17 @@ h1 {
     display: inline-block;
     background-color: rgb(191, 240, 148);
     padding: 5px;
+    border-radius: 4px;
+    font-size: 1.1rem;
 }
 
 .form-container {
-    /* width: 440px;
-    margin: 0 auto; */
     text-align: center;
 }
 
 form {
     display: inline-block;
+    font-size: 1.4rem;
 }
 
 h3 {
@@ -90,4 +92,16 @@ form ul {
 
 form li {
     list-style-type: none;
+}
+
+.win-message {
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+label,
+input {
+    padding: 4px;
 }
